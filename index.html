@@ -286,26 +286,61 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
+        /* Update the metrics grid styles */
         .metrics-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
 
         .metric-card {
             background: var(--white);
-            padding: 2rem;
+            padding: 2rem 1rem;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
-            flex: 1 1 200px; /* ensures a minimum width of 200px and allows the card to grow/shrink */
         }
 
-        .metric-card:hover {
-            transform: translateY(-5px);
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 1rem;
+                padding: 0.5rem 0;
+                margin: 2rem -1rem;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .metric-card {
+                flex: 0 0 auto;
+                width: 200px;
+                scroll-snap-align: center;
+                margin: 0 0.5rem;
+                padding: 1.5rem 1rem;
+            }
+
+            /* Hide scrollbar but keep functionality */
+            .metrics-grid::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .metrics-grid {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .metric-number {
+                font-size: 2rem;
+            }
+
+            .metric-label {
+                font-size: 0.9rem;
+            }
         }
 
         .metric-number {
@@ -324,11 +359,6 @@
             .profile-container {
                 flex-direction: column;
                 gap: 2rem;
-            }
-            
-            .metrics-grid {
-                flex-direction: column;
-                align-items: center;
             }
             
             .profile-image-wrapper {
