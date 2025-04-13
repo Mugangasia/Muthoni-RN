@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pD6YkI2CrEg6o5j1aX+Xj+n8y6KjvlZbyo0MtgFTZ5i1uGuMeMPoavKgK4j2dR6cyfg02Pp/FDd8qD5f5d3Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -941,6 +942,117 @@
             font-size: 0.9rem;
         }
         
+        .footer-extra {
+            padding: 2rem 0;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+        
+        .footer-extra h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-extra p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-extra__links a:hover {
+            transform: translateY(-3px);
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        
+        /* Scroll Animation Styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Variant animations for different elements */
+        .animate-fade-in {
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+        }
+        
+        .animate-fade-in.animate {
+            opacity: 1;
+        }
+        
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-slide-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-slide-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Staggered animation for grid items */
+        .animate-stagger > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        
+        .animate-stagger.animate > *:nth-child(1) {
+            transition-delay: 0.1s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-stagger.animate > *:nth-child(2) {
+            transition-delay: 0.2s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-stagger.animate > *:nth-child(3) {
+            transition-delay: 0.3s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-stagger.animate > *:nth-child(4) {
+            transition-delay: 0.4s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-stagger.animate > *:nth-child(5) {
+            transition-delay: 0.5s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-stagger.animate > *:nth-child(6) {
+            transition-delay: 0.6s;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         @media (max-width: 992px) {
             .contact-footer__grid {
                 grid-template-columns: 1fr;
@@ -1239,6 +1351,38 @@
                     header.classList.remove('header-scrolled');
                 }
             });
+            
+            // Scroll Animation with Intersection Observer
+            const animateOnScroll = () => {
+                // Check if Intersection Observer is supported
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries, obs) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animate');
+                                // Optional: animate only once
+                                obs.unobserve(entry.target);
+                            }
+                        });
+                    }, { 
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px' // Triggers slightly before element enters viewport
+                    });
+                    
+                    // Observe all elements with animation classes
+                    document.querySelectorAll('.animate-on-scroll, .animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-stagger').forEach(element => {
+                        observer.observe(element);
+                    });
+                } else {
+                    // Fallback for browsers that don't support Intersection Observer
+                    document.querySelectorAll('.animate-on-scroll, .animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-stagger').forEach(element => {
+                        element.classList.add('animate');
+                    });
+                }
+            };
+            
+            // Initialize animations
+            animateOnScroll();
         });
     </script>
 </head>
@@ -1262,7 +1406,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero animate-on-scroll" id="home">
         <div class="container hero-content">
             <h1>Compassionate Home-Based Healthcare Services</h1>
             <p>Welcome to your trusted care partner, providing professional and personalized nursing care in the comfort of your home.</p>
@@ -1275,15 +1419,15 @@
     <section class="profile-section">
         <div class="container">
             <div class="profile-container">
-                <div class="profile-image-wrapper">
+                <div class="profile-image-wrapper animate-slide-left">
                     <img src="Muthoni RH.jpg" alt="Muthoni RN in her blue scrubs, smiling outdoors" class="profile-image">
                 </div>
-                <div class="profile-content">
+                <div class="profile-content animate-slide-right">
                     <h2>Meet Muthoni RN</h2>
                     <p>Hi, I'm Muthoni RN, a licensed and registered nurse with a passion for providing personalized, compassionate healthcare services in the comfort of your home. Whether you or your loved one needs support with daily care, post-hospital recovery, or chronic illness management, I'm here to ensure you receive the highest standard of care with dignity and respect.</p>
                     <a href="#about" class="read-more-btn">Read More About Me</a>
                     
-                    <div class="metrics-grid">
+                    <div class="metrics-grid animate-stagger">
                 <div class="metric-card">
                     <div class="metric-number">500+</div>
                     <div class="metric-label">Patients Served</div>
@@ -1308,8 +1452,8 @@
     <!-- Services Section -->
     <section class="section services" id="services">
         <div class="container">
-            <h2 class="section-title">Services I Offer</h2>
-            <div class="services-grid">
+            <h2 class="section-title animate-fade-in">Services I Offer</h2>
+            <div class="services-grid animate-stagger">
                 <div class="service-card">
                     <div class="service-icon">🏥</div>
                     <div class="service-content">
@@ -1359,8 +1503,8 @@
     <!-- Why Choose Section -->
     <section class="section why-choose" id="why-choose">
         <div class="container">
-            <h2 class="section-title">Why Choose Home-Based Care with Muthoni RN?</h2>
-            <div class="benefits-grid">
+            <h2 class="section-title animate-fade-in">Why Choose Home-Based Care with Muthoni RN?</h2>
+            <div class="benefits-grid animate-stagger">
                 <div class="benefit-card">
                     <div class="benefit-icon">📋</div>
                     <h3>Personalized Care Plans</h3>
@@ -1393,8 +1537,8 @@
     <!-- About Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">About Muthoni RN</h2>
-            <div class="profile-content">
+            <h2 class="section-title animate-fade-in">About Muthoni RN</h2>
+            <div class="profile-content animate-on-scroll">
                 <p>I'm a registered nurse based in Kenya, dedicated to transforming lives through quality healthcare. My journey in nursing began with a deep desire to make a difference in my community, especially for those who find it challenging to access traditional healthcare settings. Over the years, I've worked with diverse patients, gaining expertise in home-based care, elderly support, and chronic illness management.</p>
                 <p>I'm proud to contribute to Kenya's growing focus on community health, a movement that empowers families to receive care in their homes while promoting independence and dignity. My training and experience align with the standards set by global nursing organizations like the American Nurses Association, which champions excellence in nursing care.</p>
                 <p>When I'm not caring for patients, I enjoy connecting with my community, sharing health education, and spending time outdoors – as you can see from my photo!</p>
@@ -1405,8 +1549,8 @@
     <!-- Testimonials Section -->
     <section class="section testimonials" id="testimonials">
         <div class="container">
-            <h2 class="section-title">Testimonials</h2>
-            <div class="testimonial-grid">
+            <h2 class="section-title animate-fade-in">Testimonials</h2>
+            <div class="testimonial-grid animate-stagger">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <p class="quote">Muthoni is a blessing! She took such good care of my mother after her surgery, and her warm smile made all the difference. I highly recommend her.</p>
@@ -1436,8 +1580,8 @@
     <!-- How It Works Section -->
     <section class="section how-it-works" id="how-it-works">
         <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <div class="steps">
+            <h2 class="section-title animate-fade-in">How It Works</h2>
+            <div class="steps animate-stagger">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Reach Out</h3>
@@ -1460,8 +1604,8 @@
     <!-- Blog Section -->
     <section class="section blog" id="blog">
         <div class="container">
-            <h2 class="section-title">Health Tips & Blog</h2>
-            <div class="blog-grid">
+            <h2 class="section-title animate-fade-in">Health Tips & Blog</h2>
+            <div class="blog-grid animate-stagger">
                 <div class="blog-card">
                     <div class="blog-image"></div>
                     <div class="blog-content">
@@ -1493,8 +1637,8 @@
     <!-- FAQ Section -->
     <section class="section faq" id="faq">
         <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-container">
+            <h2 class="section-title animate-fade-in">Frequently Asked Questions</h2>
+            <div class="faq-container animate-on-scroll">
                 <div class="faq-item">
                     <div class="faq-question">
                         What areas do you serve? <span class="icon">+</span>
@@ -1536,7 +1680,7 @@
         <div class="contact-footer__container">
             <div class="contact-footer__grid">
                 <!-- Contact Area -->
-                <div class="contact-footer__contact">
+                <div class="contact-footer__contact animate-slide-left">
                     <h2 class="contact-footer__heading">Get in Touch</h2>
                     <p class="contact-footer__text">I'm here to help you or your loved one live a healthier, more comfortable life. Let's talk about how I can support you with my home-based healthcare services.</p>
                     
@@ -1568,7 +1712,7 @@
                 </div>
                 
                 <!-- Footer Info Area -->
-                <div class="contact-footer__info">
+                <div class="contact-footer__info animate-slide-right">
                     <div class="contact-footer__info-grid">
                         <div class="contact-footer__column">
                             <div class="contact-footer__logo">Muthoni RN</div>
@@ -1591,18 +1735,31 @@
                     
                     <div class="contact-footer__social">
                         <div class="contact-footer__social-icon">
-                            <a href="#" aria-label="Facebook">F</a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         </div>
                         <div class="contact-footer__social-icon">
-                            <a href="#" aria-label="Twitter">T</a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         </div>
                         <div class="contact-footer__social-icon">
-                            <a href="#" aria-label="Instagram">I</a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="contact-footer__social-icon">
-                            <a href="#" aria-label="LinkedIn">L</a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="footer-extra" style="text-align: center; margin-top: 2rem;">
+                <h3 style="font-family: var(--font-heading); color: var(--white);">RN Talks</h3>
+                <p style="color: rgba(255,255,255,0.9);">Check out our YouTube Channel and Podcast for health talks and updates.</p>
+                <div class="footer-extra__links" style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+                    <a href="https://www.youtube.com/channel/YourChannelID" target="_blank" style="color: var(--white); text-decoration:none;">
+                        <i class="fab fa-youtube" style="font-size: 1.5rem;"></i>
+                    </a>
+                    <a href="https://podcasts.example.com/YourPodcast" target="_blank" style="color: var(--white); text-decoration:none;">
+                        <i class="fas fa-microphone-alt" style="font-size: 1.5rem;"></i>
+                    </a>
                 </div>
             </div>
             
