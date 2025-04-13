@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Add before existing head content -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muthoni RN - Compassionate Home-Based Healthcare Services</title>
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        :root {
+          /* Balanced Color Palette */
+          --primary: #3F51B5;
+          --primary-light: #7986CB;
+          --primary-dark: #303F9F;
+          --accent: #26A69A;
+          --success: #66BB6A;
+          --warning: #FFA726;
+          --white: #ffffff;
+          --light: #f8fafc;
+          --gray-100: #f1f5f9;
+          --gray-200: #e2e8f0;
+          --gray-700: #334155;
+          --gray-900: #0f172a;
+          
+          /* Modern Font Settings */
+          --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+          --font-heading: 'Plus Jakarta Sans', var(--font-sans);
+        }
+        
+        * {
+            font-family: var(--font-sans);
+        }
+        
+        body {
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled state header */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Update the logo styles */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .logo span {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #2DD4BF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        /* Normal state menu items */
+        nav ul li a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+        
+        /* Scrolled state menu items */
+        .header-scrolled nav ul li a {
+            color: var(--primary-dark);
+        }
+        
+        /* Hover states for both normal and scrolled */
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 1px; /* Small margin to prevent content overlap with sticky header */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0z" fill="%23fff" fill-opacity=".05"/%3E%3C/svg%3E');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 0;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        
+        .profile-section {
+            background-color: var(--light);
+            padding: 2rem 0;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .profile-image-wrapper {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+        .profile-image-wrapper:hover .profile-image {
+            transform: translate(10px, 10px);
+        }
+
+        .profile-content {
+            flex: 1.2;
+            text-align: left;
+        }
+
+        .profile-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .metrics-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .metric-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            flex: 1 1 200px; /* ensures a minimum width of 200px and allows the card to grow/shrink */
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .metrics-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-image-wrapper {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .profile-content {
+                text-align: center;
+            }
+        }
+        
+        .section {
+            padding: 2rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .services {
+            background-color: var(--white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-light);
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .why-choose {
+            background-color: var(--light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .testimonials {
+            background-color: var(--white);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--gray-100);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--gray-200);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+        
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-info {
+            margin-left: 1rem;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .author-location {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .how-it-works {
+            background-color: var(--light);
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+        
+        .blog {
+            background-color: var(--white);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--gray-100);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-color: var(--primary-light);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq {
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            background-color: var(--white);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        .faq-answer {
+            padding: 0 1rem 1rem;
+            display: none;
+        }
+        
+        .faq-active .faq-answer {
+            display: block;
+        }
+        
+        .faq-question .icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-active .faq-question .icon {
+            transform: rotate(45deg);
+        }
+        
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+        
+        .contact-info h2 {
+            color: var(--white);
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer-heading {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            background: rgba(255, 255, 255, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .social-icon:hover a {
+            color: var(--primary-dark);
+        }
+
+        .social-icon a {
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact-Footer Unified Section */
+        .contact-footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+        
+        .contact-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M0 0h20v20H0z" fill="%23fff" fill-opacity=".05"/%3E%3C/svg%3E');
+            opacity: 0.2;
+        }
+        
+        .contact-footer__container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .contact-footer__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-footer__contact {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-footer__heading {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-family: var(--font-heading);
+        }
+        
+        .contact-footer__text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+        }
+        
+        .contact-footer__methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-footer__method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-footer__icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-footer__method:hover .contact-footer__icon {
+            background-color: var(--white);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .contact-footer__info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-footer__info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .contact-footer__column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .contact-footer__logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+        
+        .contact-footer__description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .contact-footer__subheading {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        
+        .contact-footer__links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .contact-footer__links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: inline-block;
+        }
+        
+        .contact-footer__links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+        
+        .contact-footer__social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-footer__social-icon {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .contact-footer__social-icon:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .contact-footer__social-icon:hover a {
+            color: var(--accent);
+        }
+        
+        .contact-footer__social-icon a {
+            color: var(--white);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .contact-footer__bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-footer__grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .contact-footer__info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-footer__info-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-footer__heading {
+                font-size: 1.8rem;
+            }
+            
+            .contact-footer__text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+                position: relative;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 0.5rem 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1.2rem;
+                right: 1rem;
+                z-index: 100;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--primary);
+                cursor: pointer;
+            }
+            
+            .mobile-hidden {
+                display: none;
+            }
+            
+            .mobile-visible {
+                display: block;
+            }
+            
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                display: block;
+                margin-bottom: 1rem;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .chat-widget {
+            position: fixed !important;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 99999;
+        }
+
+        .chat-card {
+            position: absolute;
+            bottom: calc(100% + 1rem);
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .chat-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .chat-toggle {
+            /* Ensure icon and text are aligned */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            
+            /* Modern gradient background and text color */
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            
+            /* Remove default border and add padding */
+            border: none;
+            padding: 0.8rem 1.5rem;
+            
+            /* Rounded corners for a pill-shaped button */
+            border-radius: 30px;
+            
+            /* Smooth transition for hover effects */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        /* Hover effect: scale the button and add a subtle shadow */
+        .chat-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Focus state for accessibility */
+        .chat-toggle:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chat-body {
+            padding: 1.5rem;
+        }
+
+        .chat-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-form input,
+        .chat-form textarea {
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            width: 100%;
+        }
+
+        .chat-form textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .chat-submit {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+    </style>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('mobile-hidden');
+                nav.classList.toggle('mobile-visible');
+            });
+            
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('faq-active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('faq-active');
+                });
+            });
+
+            // Chat widget functionality
+            const chatToggle = document.querySelector('.chat-toggle');
+            const chatCard = document.querySelector('.chat-card');
+            const closeChat = document.querySelector('.close-chat');
+            const chatForm = document.querySelector('.chat-form');
+
+            chatToggle.addEventListener('click', () => {
+                chatCard.classList.add('active');
+            });
+
+            closeChat.addEventListener('click', () => {
+                chatCard.classList.remove('active');
+            });
+
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thanks for your message! I\'ll get back to you soon.');
+                chatCard.classList.remove('active');
+                chatForm.reset();
+            });
+
+            // Header scroll functionality
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="header-container container">
+            <div class="logo">Muthoni <span>RN</span></div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+            <nav class="mobile-hidden">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#blog">Health Tips</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Compassionate Home-Based Healthcare Services</h1>
+            <p>Welcome to your trusted care partner, providing professional and personalized nursing care in the comfort of your home.</p>
+            <a href="#contact" class="btn">Book a Consultation</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-image-wrapper">
+                    <img src="Muthoni RH.jpg" alt="Muthoni RN in her blue scrubs, smiling outdoors" class="profile-image">
+                </div>
+                <div class="profile-content">
+                    <h2>Meet Muthoni RN</h2>
+                    <p>Hi, I'm Muthoni RN, a licensed and registered nurse with a passion for providing personalized, compassionate healthcare services in the comfort of your home. Whether you or your loved one needs support with daily care, post-hospital recovery, or chronic illness management, I'm here to ensure you receive the highest standard of care with dignity and respect.</p>
+                    <a href="#about" class="read-more-btn">Read More About Me</a>
+                    
+                    <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">500+</div>
+                    <div class="metric-label">Patients Served</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">8+</div>
+                    <div class="metric-label">Years Experience</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">98%</div>
+                    <div class="metric-label">Patient Satisfaction</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">24/7</div>
+                    <div class="metric-label">Care Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Services I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <div class="service-content">
+                        <h3>Post-Hospital Care</h3>
+                        <p>Assistance with recovery after surgery or hospitalization, including wound care, medication management, and monitoring.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👵</div>
+                    <div class="service-content">
+                        <h3>Elderly Care</h3>
+                        <p>Support for seniors, including mobility assistance, daily living activities, and companionship.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <div class="service-content">
+                        <h3>Chronic Illness Management</h3>
+                        <p>Care for conditions like diabetes, hypertension, and arthritis to improve quality of life.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤍</div>
+                    <div class="service-content">
+                        <h3>Palliative Care</h3>
+                        <p>Compassionate support for terminally ill patients, focusing on comfort and dignity.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <div class="service-content">
+                        <h3>Health Education</h3>
+                        <p>Guidance for families on caregiving techniques, infection prevention, and healthy living practices.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💪</div>
+                    <div class="service-content">
+                        <h3>Basic Therapy Support</h3>
+                        <p>Assistance with light physical therapy exercises as prescribed by your doctor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="section why-choose" id="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Home-Based Care with Muthoni RN?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📋</div>
+                    <h3>Personalized Care Plans</h3>
+                    <p>I design care plans that cater to your medical, emotional, and lifestyle needs.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">❤️</div>
+                    <h3>Compassionate Approach</h3>
+                    <p>I treat every patient like family, providing care with empathy and respect.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏠</div>
+                    <h3>Convenience</h3>
+                    <p>Avoid the hassle of hospital visits – I bring professional healthcare to your home.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎓</div>
+                    <h3>Professional Expertise</h3>
+                    <p>As a licensed nurse, I'm trained to handle a wide range of health conditions.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Affordable Services</h3>
+                    <p>Quality care doesn't have to be expensive. I offer competitive rates for my services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Muthoni RN</h2>
+            <div class="profile-content">
+                <p>I'm a registered nurse based in Kenya, dedicated to transforming lives through quality healthcare. My journey in nursing began with a deep desire to make a difference in my community, especially for those who find it challenging to access traditional healthcare settings. Over the years, I've worked with diverse patients, gaining expertise in home-based care, elderly support, and chronic illness management.</p>
+                <p>I'm proud to contribute to Kenya's growing focus on community health, a movement that empowers families to receive care in their homes while promoting independence and dignity. My training and experience align with the standards set by global nursing organizations like the American Nurses Association, which champions excellence in nursing care.</p>
+                <p>When I'm not caring for patients, I enjoy connecting with my community, sharing health education, and spending time outdoors – as you can see from my photo!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="quote">Muthoni is a blessing! She took such good care of my mother after her surgery, and her warm smile made all the difference. I highly recommend her.</p>
+                        <div class="author">
+                            <div class="author-info">
+                                <div class="author-name">La Chao</div>
+                                <div class="author-location">Nairobi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="quote">Having Muthoni care for my father at home gave us peace of mind. She's professional, kind, and truly cares about her patients.</p>
+                        <div class="author">
+                            <div class="author-info">
+                                <div class="author-name">Anonymous Client</div>
+                                <div class="author-location">Kenya</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Reach Out</h3>
+                    <p>Contact me via WhatsApp or phone at 0794941258 to discuss your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Assessment</h3>
+                    <p>I'll schedule a consultation to understand your health requirements and create a personalized care plan.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Care Begins</h3>
+                    <p>I'll provide the agreed-upon services at your home, ensuring your comfort and well-being every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog" id="blog">
+        <div class="container">
+            <h2 class="section-title">Health Tips & Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">5 Ways to Support Your Elderly Loved Ones at Home</h3>
+                        <p>Learn simple strategies to enhance their comfort and independence.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">The Benefits of Home-Based Care in Kenya</h3>
+                        <p>Discover how home care aligns with Kenya's community health initiatives, like those supported by the Ministry of Health.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image"></div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Managing Chronic Illness: Tips for Families</h3>
+                        <p>Practical advice for caring for loved ones with conditions like diabetes or hypertension.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What areas do you serve? <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I currently provide services in Nairobi and surrounding areas. Contact me to confirm availability in your location.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How much do your services cost? <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pricing depends on the type and frequency of care needed. I'll provide a detailed quote after our consultation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are you available for emergency care? <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I focus on scheduled home care, but I can guide you on what to do in emergencies and coordinate with local health facilities if needed.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you work with insurance? <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I'm exploring partnerships with Kenya's Social Health Authority (SHA) and other providers. For now, my services are self-pay, but I offer affordable rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact-Footer Section -->
+    <section class="contact-footer" id="contact">
+        <div class="contact-footer__container">
+            <div class="contact-footer__grid">
+                <!-- Contact Area -->
+                <div class="contact-footer__contact">
+                    <h2 class="contact-footer__heading">Get in Touch</h2>
+                    <p class="contact-footer__text">I'm here to help you or your loved one live a healthier, more comfortable life. Let's talk about how I can support you with my home-based healthcare services.</p>
+                    
+                    <div class="contact-footer__methods">
+                        <div class="contact-footer__method">
+                            <div class="contact-footer__icon">📱</div>
+                            <div>
+                                <h3>Phone/WhatsApp</h3>
+                                <a href="tel:0794941258" class="contact-link">0794941258</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-footer__method">
+                            <div class="contact-footer__icon">✉️</div>
+                            <div>
+                                <h3>Email</h3>
+                                <a href="mailto:muthoni.rn@homehealthcare.co.ke" class="contact-link">muthoni.rn@homehealthcare.co.ke</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-footer__method">
+                            <div class="contact-footer__icon">🐦</div>
+                            <div>
+                                <h3>Follow on X</h3>
+                                <a href="https://twitter.com/valentieyy" target="_blank" class="contact-link">@valentieyy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Info Area -->
+                <div class="contact-footer__info">
+                    <div class="contact-footer__info-grid">
+                        <div class="contact-footer__column">
+                            <div class="contact-footer__logo">Muthoni RN</div>
+                            <p class="contact-footer__description">Providing compassionate home-based healthcare services tailored to your needs. Your trusted partner in health and wellness.</p>
+                        </div>
+                        
+                        <div class="contact-footer__column">
+                            <h3 class="contact-footer__subheading">Quick Links</h3>
+                            <div class="contact-footer__links">
+                                <a href="#home">Home</a>
+                                <a href="#services">Services</a>
+                                <a href="#about">About</a>
+                                <a href="#why-choose">Why Choose Me</a>
+                                <a href="#testimonials">Testimonials</a>
+                                <a href="#blog">Health Tips</a>
+                                <a href="#faq">FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-footer__social">
+                        <div class="contact-footer__social-icon">
+                            <a href="#" aria-label="Facebook">F</a>
+                        </div>
+                        <div class="contact-footer__social-icon">
+                            <a href="#" aria-label="Twitter">T</a>
+                        </div>
+                        <div class="contact-footer__social-icon">
+                            <a href="#" aria-label="Instagram">I</a>
+                        </div>
+                        <div class="contact-footer__social-icon">
+                            <a href="#" aria-label="LinkedIn">L</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-footer__bottom">
+                <p>© 2023 Muthoni RN. All rights reserved. | Professional Home-Based Healthcare Services</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-toggle">
+            <span class="chat-icon">💬</span>
+            <span class="chat-text">Talk to Me</span>
+        </button>
+        
+        <div class="chat-card">
+            <div class="chat-header">
+                <h3>Chat with Muthoni RN</h3>
+                <button class="close-chat">×</button>
+            </div>
+            <div class="chat-body">
+                <p class="chat-intro">Hi! 👋 I'm here to help. Fill out this quick form and I'll get back to you shortly.</p>
+                <form class="chat-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="How can I help you?" required></textarea>
+                    <button type="submit" class="chat-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
